@@ -1,11 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675">
-<defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#ea580c"/><stop offset="1" stop-color="#b45309"/></linearGradient></defs>
-<rect width="1200" height="675" fill="url(#g)"/>
-<circle cx="1030" cy="120" r="170" fill="rgba(255,255,255,.08)"/>
-<circle cx="140" cy="580" r="220" fill="rgba(255,255,255,.06)"/>
-<text x="70" y="120" font-size="42" font-family="Arial" fill="#EAF2FF" font-weight="700">TaxLedger India</text>
-<text x="70" y="260" font-size="72" font-family="Arial" fill="white" font-weight="800">ITR Filing Checklist</text>
-<text x="70" y="340" font-size="34" font-family="Arial" fill="#dbeafe">Documents and preparation guide</text>
-<rect x="70" y="410" rx="18" ry="18" width="240" height="82" fill="rgba(255,255,255,.14)"/>
-<text x="110" y="462" font-size="34" font-family="Arial" fill="white" font-weight="700">ITR Ready</text>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="675" viewBox="0 0 1200 675"><defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#ea580c"/><stop offset="1" stop-color="#b45309"/></linearGradient></defs><rect width="1200" height="675" fill="url(#g)"/><text x="70" y="110" font-size="40" font-family="Arial" fill="#EAF2FF" font-weight="700">TaxLedger India</text><text x="70" y="250" font-size="72" font-family="Arial" fill="white" font-weight="800">ITR Checklist</text><text x="70" y="330" font-size="34" font-family="Arial" fill="#dbeafe">Documents and filing prep</text></svg>
