@@ -1,3 +1,172 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Contact | TaxLedger India</title><link rel="stylesheet" href="assets/style.css"></head><body><div class="topbar"><div class="container">Finance, Tax & Compliance News for professionals, businesses and students.</div></div>
-<header class="header"><div class="container nav"><a class="logo" href="index.html">Tax<span>Ledger</span> India</a><nav class="menu">
-<a href="index.html">Home</a><a href="income-tax.html">Income Tax</a><a href="gst.html">GST</a><a href="tds-tcs.html">TDS / TCS</a><a href="business-compliance.html">Business & Compliance</a><a href="guides.html">Guides</a><a href="about.html">About</a><a href="contact.html">Contact</a></nav><div class="search">Search articles…</div></div></header><main class="container"><section class="category-hero"><h1>Contact</h1></section><article class="card page-card"><p>Add your email address, business details or contact form here before public launch.</p></article></main><footer class="footer"><div class="container footer-grid"><div><h3>TaxLedger India</h3><p>Actionable tax, GST, TDS and compliance content for Indian professionals, students and small businesses.</p></div><div><h4>Categories</h4><p><a href="income-tax.html">Income Tax</a><br><a href="gst.html">GST</a><br><a href="tds-tcs.html">TDS / TCS</a></p></div><div><h4>Company</h4><p><a href="about.html">About Us</a><br><a href="contact.html">Contact</a><br><a href="privacy-policy.html">Privacy Policy</a></p></div><div><h4>Legal</h4><p><a href="disclaimer.html">Disclaimer</a><br><a href="terms.html">Terms</a></p></div></div><div class="container" style="padding:0 0 24px;color:#9fb1c6">© <span data-year></span> TaxLedger India. All rights reserved.</div></footer><script src="assets/main.js"></script></body></html>
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Contact | TaxLedger India</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <style>
+        /* Inline fallback styles to ensure the new layout looks structured */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 20px;
+        }
+        .contact-info h3 {
+            margin-top: 0;
+            color: #1a202c;
+        }
+        .contact-item {
+            margin-bottom: 20px;
+        }
+        .contact-item a {
+            color: #2b6cb0;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .submit-btn {
+            background-color: #2b6cb0;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .submit-btn:hover {
+            background-color: #2c5282;
+        }
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="topbar">
+        <div class="container">Finance, Tax & Compliance News for professionals, businesses and students.</div>
+    </div>
+    
+    <header class="header">
+        <div class="container nav">
+            <a class="logo" href="index.html">Tax<span>Ledger</span> India</a>
+            <nav class="menu">
+                <a href="index.html">Home</a>
+                <a href="income-tax.html">Income Tax</a>
+                <a href="gst.html">GST</a>
+                <a href="tds-tcs.html">TDS / TCS</a>
+                <a href="business-compliance.html">Business & Compliance</a>
+                <a href="guides.html">Guides</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <div class="search">Search articles…</div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="category-hero">
+            <h1>Contact Us</h1>
+        </section>
+        
+        <article class="card page-card">
+            <div class="contact-grid">
+                <!-- Left Column: Direct Contact Information -->
+                <div class="contact-info">
+                    <h3>Get in Touch</h3>
+                    <p>Have questions regarding Income Tax, GST, or business compliance? Reach out to us directly through the details below.</p>
+                    
+                    <div class="contact-item">
+                        <strong>📧 Email Address:</strong><br>
+                        <a href="mailto:Jainsourabh98.sj@gmail.com">Jainsourabh98.sj@gmail.com</a>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <strong>📞 Phone Number:</strong><br>
+                        <a href="tel:+917049642074">+91 7049642074</a>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Contact Form -->
+                <div class="contact-form">
+                    <h3>Send a Message</h3>
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required placeholder="Enter your full name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="How can we help you?"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Submit Enquiry</button>
+                    </form>
+                </div>
+            </div>
+        </article>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-grid">
+            <div>
+                <h3>TaxLedger India</h3>
+                <p>Actionable tax, GST, TDS and compliance content for Indian professionals, students and small businesses.</p>
+            </div>
+            <div>
+                <h4>Categories</h4>
+                <p>
+                    <a href="income-tax.html">Income Tax</a><br>
+                    <a href="gst.html">GST</a><br>
+                    <a href="tds-tcs.html">TDS / TCS</a>
+                </p>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <p>
+                    <a href="about.html">About Us</a><br>
+                    <a href="contact.html">Contact</a><br>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                </p>
+            </div>
+            <div>
+                <h4>Legal</h4>
+                <p>
+                    <a href="disclaimer.html">Disclaimer</a><br>
+                    <a href="terms.html">Terms</a>
+                </p>
+            </div>
+        </div>
+        <div class="container" style="padding:0 0 24px;color:#9fb1c6">
+            © <span data-year></span> TaxLedger India. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="assets/main.js"></script>
+</body>
+</html>
