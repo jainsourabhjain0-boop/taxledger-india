@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ITR-1 Calculator & JSON Generator | AY 2026-27</title>
+    <style>
+        :root {
+            --primary: #2b6cb0;
+            --primary-dark: #1a528d;
+            --success: #2f855a;
+            --danger: #c53030;
+            --background: #f7fafc;
+            --card-bg: #ffffff;
+            --text: #2d3748;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background);
+            color: var(--text);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        header h1 { margin: 0; font-size: 24px; }
+        header p { margin: 5px 0 0 0; opacity: 0.9; font-size: 14px; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        @media (max-width: 850px) {
+            .grid { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin-top: 0;
+            border-bottom: 2px solid var(--border);
+            padding-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        input[type="text"], input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .readonly-input {
+            background-color: #edf2f7;
+            font-weight: bold;
+        }
+
+        .row {
+            display: flex;
+            gap: 15px;
+        }
+
+        .row .form-group { flex: 1; }
+
+        .btn {
+            background-color: var(--success);
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+        }
+
+        .btn:hover { background-color: #22543d; }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed var(--border);
+        }
+
+        .summary-item.total {
+            border-top: 2px solid var(--text);
+            border-bottom: 2px solid var(--text);
+            font-weight: bold;
+            font-size: 18px;
+            color: var(--primary);
+            margin-top: 10px;
+        }
+
+        pre {
+            background: #1a202c;
+            color: #aeebd4;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            max-height: 300px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>ITR-1 (Sahaj) Filing & Calculation Terminal</h1>
+        <p>Assessment Year: 2026-27 (Financial Year 2025-26) | Default New Tax Regime Section 115BAC</p>
+    </header>
+
+    <div class="grid">
+        <!-- LEFT: User Input Section -->
+        <div>
+            <div class="card">
+                <h3>1. Personal & General Info</h3>
+                <div class="row">
+                    <div class="form-group">
+                        <label for="pan">PAN Number</label>
+                        <input type="text" id="pan" value="ABCDE1234F" placeholder="ABCDE1234F">
+                    </div>
+                    <div class="form-group">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" value="Sourabh Jain" placeholder="John Doe">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="residential">Residential Status</label>
+                    <select id="residential" disabled>
+                        <option value="RES">Resident Indian</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>2. Income Details (FY 2025-26)</h3>
+                <div class="form-group">
+                    <label for="gross_salary">Gross Salary Income (₹)</label>
+                    <input type="number" id="gross_salary" value="950000" oninput="calculateTax()">
+                </div>
+                <div class="form-group">
+                    <label for="std_deduction">Standard Deduction u/s 16(ia) (₹)</label>
+                    <input type="number" id="std_deduction" value="75000" class="readonly-input" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="other_income">Income from Other Sources (Interest, etc.) (₹)</label>
+                    <input type="number" id="other_income" value="25000" oninput="calculateTax()">
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>3. Tax Credits Paid</h3>
+                <div class="form-group">
+                    <label for="tds">TDS Form 16 / 26AS deducted (₹)</label>
+                    <input type="number" id="tds" value="0" oninput="calculateTax()">
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: Calculation Summary & JSON Engine -->
+        <div>
+            <div class="card">
+                <h3>4. Computation Summary (New Tax Regime)</h3>
+                <div class="summary-item">
+                    <span>Gross Total Income:</span>
+                    <span>₹ <span id="lbl_gti">0</span></span>
+                </div>
+                <div class="summary-item">
+                    <span>Net Taxable Income:</span>
+                    <span style="font-weight: 600;">₹ <span id="lbl_nti">0</span></span>
+                </div>
+                <div class="summary-item">
+                    <span>Base Tax (Slab Rates):</span>
+                    <span>₹ <span id="lbl_basetax">0</span></span>
+                </div>
+                <div class="summary-item" style="color: var(--success)">
+                    <span>Rebate u/s 87A:</span>
+                    <span>- ₹ <span id="lbl_rebate">0</span></span>
+                </div>
+                <div class="summary-item">
+                    <span>Health & Education Cess (4%):</span>
+                    <span>₹ <span id="lbl_cess">0</span></span>
+                </div>
+                <div class="summary-item total">
+                    <span>Total Tax Liability:</span>
+                    <span>₹ <span id="lbl_totalliability">0</span></span>
+                </div>
+                <div class="summary-item" style="font-weight: bold; border: none; margin-top: 5px;">
+                    <span id="lbl_refund_type">Net Payable / Refund:</span>
+                    <span id="lbl_final_status">₹ 0</span>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>5. Export Tax Data</h3>
+                <p style="font-size: 13px; color: #666; margin-top:0;">Generate the compliant structure to back-import data straight into the government schema framework utility.</p>
+                <button class="btn" onclick="generateJSON()">Generate Final Filing JSON</button>
+                <h4 style="margin-top: 15px; margin-bottom: 5px;">Output Schema Preview:</h4>
+                <pre><code id="json_preview">// Click 'Generate Final Filing JSON' to look inside...</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function calculateTax() {
+        // Fetch raw inputs
+        let grossSalary = parseFloat(document.getElementById('gross_salary').value) || 0;
+        let stdDeduction = parseFloat(document.getElementById('std_deduction').value) || 0;
+        let otherIncome = parseFloat(document.getElementById('other_income').value) || 0;
+        let tdsPaid = parseFloat(document.getElementById('tds').value) || 0;
+
+        // Calculate GTI and Taxable Net Income
+        let netSalary = Math.max(0, grossSalary - stdDeduction);
+        let gti = netSalary + otherIncome;
+        let nti = gti; // New Tax Regime AY 26-27 baseline defaults
+
+        // Calculate Base Slab Tax under New Tax Regime rules for AY 2026-27:
+        // Up to 4,00,000: Nil
+        // 4,00,001 - 8,00,000: 5%
+        // 8,00,001 - 12,00,000: 10%
+        // 12,00,001 - 16,00,000: 15%
+        // 16,00,001 - 20,00,000: 20%
+        // 20,00,001 - 24,00,000: 25%
+        // Above 24,00,000: 30%
+        let baseTax = 0;
+
+        if (nti > 2400000) {
+            baseTax += (nti - 2400000) * 0.30 + 300000;
+        } else if (nti > 2000000) {
+            baseTax += (nti - 2000000) * 0.25 + 200000;
+        } else if (nti > 1600000) {
+            baseTax += (nti - 1600000) * 0.20 + 120000;
+        } else if (nti > 1200000) {
+            baseTax += (nti - 1200000) * 0.15 + 60000;
+        } else if (nti > 800000) {
+            baseTax += (nti - 800000) * 0.10 + 20000;
